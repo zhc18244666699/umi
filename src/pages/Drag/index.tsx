@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Card, message, PageHeader } from 'antd';
+import HeaderContainer from '../component/Header';
 import { history } from 'umi';
 
 import styles from './index.less';
@@ -139,14 +140,7 @@ export default function HomeContainer() {
 
   return (
     <>
-      <PageHeader
-        className="site-page-header"
-        onBack={() => {
-          history.goBack();
-        }}
-        title="React 拖拽"
-        subTitle="唐诗三百首"
-      />
+      <HeaderContainer title="React 拖拽" subTitle="唐诗三百首" />
       <div className="wrapper" style={{ display: 'flex', padding: '0 24px' }}>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           {initData.columnOrder.map((column: any) => {

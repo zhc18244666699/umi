@@ -7,6 +7,8 @@ export default defineConfig({
   routes: [
     { path: '/', component: '@/pages/Home/index' },
     { path: '/drag', component: '@/pages/Drag/index' },
+    { path: '/player', component: '@/pages/Player/index' },
+    { path: '/detail', component: '@/pages/Detail/index' },
   ],
   fastRefresh: {},
 });
