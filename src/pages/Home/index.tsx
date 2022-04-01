@@ -7,7 +7,7 @@ import ParticlesBg from 'particles-bg';
 export default function HomeContainer() {
   useEffect(() => {});
   return (
-    <div className={styles.home_container}>
+    <div className={styles.home_container} style={{ color: '#FFF' }}>
       功能点总结
       <div className={styles.home_nav}>
         <ul>
@@ -46,7 +46,7 @@ export default function HomeContainer() {
           </li>
         </ul>
       </div>
-      <ParticlesBg type="ball" bg={true} />
+      <ParticlesBg type="lines" bg={true} />
     </div>
   );
 }
