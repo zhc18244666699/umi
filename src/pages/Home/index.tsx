@@ -1,6 +1,6 @@
 import React from 'react';
 import { history } from 'umi';
-import { Button } from 'antd';
+import { Button, PageHeader } from 'antd';
 import styles from './index.less';
 
 export default function HomeContainer() {

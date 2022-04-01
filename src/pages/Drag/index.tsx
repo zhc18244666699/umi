@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Card, message } from 'antd';
+import { Card, message, PageHeader } from 'antd';
+import { history } from 'umi';
+
+import styles from './index.less';
 
 export default function HomeContainer() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [initData, setInitData] = useState<any>({
     tasks: {
-      task1: { id: 'task1', userName: '用户a', content: '1登鹳雀楼' },
-      task2: { id: 'task2', userName: '用户b', content: '2静夜思' },
-      task3: { id: 'task3', userName: '用户c', content: '3凉州词' },
-      task4: { id: 'task4', userName: '用户d', content: '4枫桥夜泊' },
-      task5: { id: 'task5', userName: '用户e', content: '5相思' },
-      task6: { id: 'task6', userName: '用户f', content: '6渭城曲' },
-      task7: { id: 'task7', userName: '用户g', content: '7金缕衣' },
-      task8: { id: 'task8', userName: '用户h', content: '8春晓' },
-      task9: { id: 'task9', userName: '用户i', content: '9苏幕遮' },
-      task10: { id: 'task10', userName: '用户j', content: '10枫桥夜泊' },
-      task11: { id: 'task11', userName: '用户k', content: '11将进酒' },
-      task12: { id: 'task12', userName: '用户m', content: '12出塞' },
+      task1: { id: 'task1', userName: '李白', content: '登鹳雀楼' },
+      task2: { id: 'task2', userName: '李白', content: '静夜思' },
+      task3: { id: 'task3', userName: '杜甫', content: '凉州词' },
+      task4: { id: 'task4', userName: '白居易', content: '枫桥夜泊' },
+      task5: { id: 'task5', userName: '李白', content: '相思' },
+      task6: { id: 'task6', userName: '王维', content: '渭城曲' },
+      task7: { id: 'task7', userName: '李商隐', content: '金缕衣' },
+      task8: { id: 'task8', userName: '李白', content: '春晓' },
+      task9: { id: 'task9', userName: '苏轼', content: '苏幕遮' },
+      task10: { id: 'task10', userName: '苏东坡', content: '枫桥夜泊' },
+      task11: { id: 'task11', userName: '李白', content: '将进酒' },
+      task12: { id: 'task12', userName: '王维', content: '出塞' },
     },
     columns: {
       column1: {
@@ -42,7 +45,11 @@ export default function HomeContainer() {
   const ListComponent = (props: any) => {
     const { provided, innerRef, children } = props;
     return (
-      <div {...provided.droppableProps} ref={innerRef}>
+      <div
+        className={styles.list_box}
+        {...provided.droppableProps}
+        ref={innerRef}
+      >
         {children}
       </div>
     );
@@ -62,7 +69,10 @@ export default function HomeContainer() {
           title={props.item.userName}
         >
           <h2>
-            唐诗名称：<span style={{ color: 'red' }}>{props.item.content}</span>
+            唐诗名称：
+            <span style={{ color: 'red', fontSize: '24px' }}>
+              {props.item.content}
+            </span>
           </h2>
         </Card>
       </div>
@@ -128,54 +138,64 @@ export default function HomeContainer() {
   };
 
   return (
-    <div className="wrapper" style={{ display: 'flex', padding: '24px' }}>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        {initData.columnOrder.map((column: any) => {
-          const columnInfo = initData.columns[column];
-          return (
-            <Droppable key={columnInfo.id} droppableId={columnInfo.id}>
-              {(provided: any) => (
-                <div
-                  className="wrapper_content"
-                  style={{
-                    flex: '1',
-                    margin: '0 5px',
-                    border: '1px solid red',
-                  }}
-                >
-                  <h4 style={{ textAlign: 'center', fontSize: '24px' }}>
-                    {columnInfo.title}
-                  </h4>
-                  <ListComponent
-                    provided={provided}
-                    innerRef={provided.innerRef}
+    <>
+      <PageHeader
+        className="site-page-header"
+        onBack={() => {
+          history.goBack();
+        }}
+        title="React 拖拽"
+        subTitle="唐诗三百首"
+      />
+      <div className="wrapper" style={{ display: 'flex', padding: '0 24px' }}>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          {initData.columnOrder.map((column: any) => {
+            const columnInfo = initData.columns[column];
+            return (
+              <Droppable key={columnInfo.id} droppableId={columnInfo.id}>
+                {(provided: any) => (
+                  <div
+                    className="wrapper_content"
+                    style={{
+                      flex: '1',
+                      margin: '0 5px',
+                      border: '1px solid red',
+                    }}
                   >
-                    {columnInfo.taskIds.map((task: any, index: number) => {
-                      const taskInfo = initData.tasks[task];
-                      return (
-                        <Draggable
-                          key={taskInfo.id}
-                          draggableId={taskInfo.id + ''}
-                          index={index}
-                        >
-                          {(providedItem: any, snapshot: any) => (
-                            <ListItemComponent
-                              item={taskInfo}
-                              provided={providedItem}
-                              innerRef={providedItem.innerRef}
-                              idDragging={snapshot.idDragging}
-                            />
-                          )}
-                        </Draggable>
-                      );
-                    })}
-                  </ListComponent>
-                </div>
-              )}
-            </Droppable>
-          );
-        })}
-      </DragDropContext>
-    </div>
+                    <h4 style={{ textAlign: 'center', fontSize: '24px' }}>
+                      {columnInfo.title}
+                    </h4>
+                    <ListComponent
+                      provided={provided}
+                      innerRef={provided.innerRef}
+                    >
+                      {columnInfo.taskIds.map((task: any, index: number) => {
+                        const taskInfo = initData.tasks[task];
+                        return (
+                          <Draggable
+                            key={taskInfo.id}
+                            draggableId={taskInfo.id + ''}
+                            index={index}
+                          >
+                            {(providedItem: any, snapshot: any) => (
+                              <ListItemComponent
+                                item={taskInfo}
+                                provided={providedItem}
+                                innerRef={providedItem.innerRef}
+                                idDragging={snapshot.idDragging}
+                              />
+                            )}
+                          </Draggable>
+                        );
+                      })}
+                    </ListComponent>
+                  </div>
+                )}
+              </Droppable>
+            );
+          })}
+        </DragDropContext>
+      </div>
+    </>
   );
 }
