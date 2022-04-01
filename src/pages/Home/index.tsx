@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { history } from 'umi';
 import { Button, PageHeader } from 'antd';
 import styles from './index.less';
+import ParticlesBg from 'particles-bg';
 
 export default function HomeContainer() {
   useEffect(() => {});
@@ -45,6 +46,7 @@ export default function HomeContainer() {
           </li>
         </ul>
       </div>
+      <ParticlesBg type="ball" bg={true} />
     </div>
   );
 }

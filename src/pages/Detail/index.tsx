@@ -14,7 +14,7 @@ export default function PlayerContainer() {
       />
       <ul>
         <li style={{ fontSize: '24px', color: 'red', textAlign: 'center' }}>
-          滑动你的鼠标，点击返回上一菜单
+          滑动鼠标
         </li>
         <li>.</li>
         <li>.</li>
