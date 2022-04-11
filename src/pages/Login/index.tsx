@@ -7,6 +7,7 @@ import {
   AlipayCircleOutlined,
 } from '@ant-design/icons';
 import { history } from 'umi';
+import { Prompt } from 'umi';
 import styles from './index.less';
 
 export default function LoginContainer() {
@@ -83,6 +84,12 @@ export default function LoginContainer() {
           </span>
         </div>
       </div>
+      {/* 用户要跳转到首页时，提示一个选择 */}
+      <Prompt
+        message={(location) => {
+          return location.pathname !== '/' ? true : `您确定要跳转到首页么？`;
+        }}
+      />
     </div>
   );
 }

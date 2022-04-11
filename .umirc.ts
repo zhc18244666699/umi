@@ -10,6 +10,7 @@ export default defineConfig({
     { path: '/player', component: '@/pages/Player/index' },
     { path: '/detail', component: '@/pages/Detail/index' },
     { path: '/login', component: '@/pages/Login/index' },
+    { component: '@/pages/404' },
   ],
   fastRefresh: {},
 });
