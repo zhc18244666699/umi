@@ -44,9 +44,20 @@ export default function HomeContainer() {
               react: 详情背景
             </Button>
           </li>
+          <li>
+            <Button
+              style={{ fontSize: '18px', margin: '10px 0' }}
+              onClick={() => {
+                history.push('/login');
+              }}
+              type="link"
+            >
+              react: 登录
+            </Button>
+          </li>
         </ul>
       </div>
-      <ParticlesBg type="lines" bg={true} />
+      {/* <ParticlesBg type="lines" bg={true} /> */}
     </div>
   );
 }

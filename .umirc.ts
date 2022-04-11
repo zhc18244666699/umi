@@ -9,6 +9,7 @@ export default defineConfig({
     { path: '/drag', component: '@/pages/Drag/index' },
     { path: '/player', component: '@/pages/Player/index' },
     { path: '/detail', component: '@/pages/Detail/index' },
+    { path: '/login', component: '@/pages/Login/index' },
   ],
   fastRefresh: {},
 });
