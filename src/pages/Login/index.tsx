@@ -1,9 +1,18 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Checkbox, Avatar } from 'antd';
+import { Form, Input, Button, Checkbox, Avatar, message } from 'antd';
+import {
+  WechatOutlined,
+  QqOutlined,
+  WeiboCircleOutlined,
+  AlipayCircleOutlined,
+} from '@ant-design/icons';
+import { history } from 'umi';
 import styles from './index.less';
 
 export default function LoginContainer() {
   const onFinish = (value: any) => {
+    message.success('登录成功！');
+    history.push('/');
     console.log(value, '1');
   };
 
@@ -55,6 +64,23 @@ export default function LoginContainer() {
               </Button>
             </Form.Item>
           </Form>
+        </div>
+        <div className={styles.login_other}>
+          <span>其他登录方法：</span>
+          <span>
+            <WechatOutlined
+              style={{ fontSize: '24px', margin: '0 10px', cursor: 'pointer' }}
+            />
+            <QqOutlined
+              style={{ fontSize: '24px', margin: '0 10px', cursor: 'pointer' }}
+            />
+            <WeiboCircleOutlined
+              style={{ fontSize: '24px', margin: '0 10px', cursor: 'pointer' }}
+            />
+            <AlipayCircleOutlined
+              style={{ fontSize: '24px', margin: '0 10px', cursor: 'pointer' }}
+            />
+          </span>
         </div>
       </div>
     </div>
